@@ -8,5 +8,6 @@ public:
 	Bulletin();
 	~Bulletin();
 	std::vector<Game> gameList;
+	bool FillBulletin(std::string);
 };
 
