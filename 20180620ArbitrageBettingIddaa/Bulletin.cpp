@@ -52,6 +52,7 @@ bool Bulletin::FillBulletin(std::string filename)
 		}
 	}
 	ret = true;
+	infile.close();
 	return ret;
 
 }

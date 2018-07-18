@@ -62,6 +62,14 @@ int main()
 			}
 
 			cout << "Coupons Found: " << coupons.size() << endl;
+
+			for (size_t i = 0; i < coupons.size(); i++)
+			{
+				if (!coupons[i].WriteToFile(DEFAULT_OUTPUT_COUPONS_PATH))
+				{
+					log.WriteErrorLog("Outfile Write Error");
+				}
+			}
 		}
 	}
 	catch (std::exception ex)

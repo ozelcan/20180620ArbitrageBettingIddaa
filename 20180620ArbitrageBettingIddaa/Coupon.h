@@ -25,5 +25,6 @@ public:
 
 	std::vector<CouponGames> game;
 	float betAmountOfCoupon;
+	bool WriteToFile(std::string path_of_out_file);
 };
 

@@ -9,7 +9,7 @@
 #define SIZE_OF_MINIMUM_BET_AMOUNT		1
 #define	DEFAULT_BULLETIN_PATH			"bulletins\\default_bulletin.txt"
 #define MIN_NUM_OF_BETS_FOR_A_GAME		3
-
+#define	DEFAULT_OUTPUT_COUPONS_PATH		"output_coupons\\out_coupons"
 
 enum BetTypes
 {
