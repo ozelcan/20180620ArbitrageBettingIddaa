@@ -13,10 +13,12 @@ public:
 	void CalculateDistributionOnBets();
 	void PrintFinalBalance();
 	void CalculateProfitRate() { profitRate = finalBalance / betAmount; }
+	float GetProfitRate() const { return profitRate; }
 
 private:
 	const float betAmount = DEFAULT_BET_AMOUNT;
 	float finalBalance;
 	float profitRate;
+
 };
 

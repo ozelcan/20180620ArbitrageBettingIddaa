@@ -7,41 +7,61 @@
 #include <iostream>
 #include "ConsoleColor.h"
 #include "Bulletin.h"
+#include "Log.h"
+#include "Coupon.h"
 
 using namespace std;
 
-
 int main()
 {
+	static Log log;
 	try
 	{
 		while (true)
 		{
 			Bet bet;
-			int length;
-			string bulletinName;
+			int numOfGames;
 			Bulletin bulletin;
+			vector<Coupon> coupons;
+			Coupon tempCoupon;
 
-			cout << "Insert the bulletin name: " << endl;
-			cin >> bulletinName;
-			bulletin.FillBulletin(DEFAULT_BULLETIN_FOLDER_NAME + bulletinName);
-
-			cout << "Insert the number of bets: " << endl;
-			cin >> length;
-
-			for (size_t i = 0; i < length; i++)
+			if (!(bulletin.FillBulletin(DEFAULT_BULLETIN_PATH)))
 			{
-				float tempFloat;
-
-				cout << "Insert the " << i << "th bet: " << endl;
-				cin >> tempFloat;
-				bet.bets.push_back(tempFloat);
+				log.WriteErrorLog("Bulletin Read Error");
 			}
 
-			bet.CalculateDistributionOnBets();
-			bet.CalculateProfitRate();
+			for (size_t i = 0; i < bulletin.gameList.size(); i++)
+			{
+				float tempFloat;
+				bet.bets.clear();
+				bet.betsInTypeOfX.clear();
 
-			bet.PrintFinalBalance();
+				bet.bets.push_back(bulletin.gameList[i].homeWins);
+				bet.bets.push_back(bulletin.gameList[i].drawGame);
+				bet.bets.push_back(bulletin.gameList[i].awayWins);
+
+				bet.CalculateDistributionOnBets();
+				bet.CalculateProfitRate();
+				
+				if (bet.GetProfitRate() > 1.0f)
+				{
+					CouponGames tempCouponGame(bulletin.gameList[i]);
+					
+					tempCouponGame.betOnGame = HOME_WINS;
+					tempCoupon.game.push_back(tempCouponGame);
+					coupons.push_back(tempCoupon);
+
+					tempCouponGame.betOnGame = DRAW_GAME;
+					tempCoupon.game.push_back(tempCouponGame);
+					coupons.push_back(tempCoupon);
+
+					tempCouponGame.betOnGame = AWAY_WINS;
+					tempCoupon.game.push_back(tempCouponGame);
+					coupons.push_back(tempCoupon);
+				}
+			}
+
+			cout << "Coupons Found: " << coupons.size() << endl;
 		}
 	}
 	catch (std::exception ex)

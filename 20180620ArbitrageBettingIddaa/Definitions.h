@@ -7,7 +7,8 @@
 #define SIZE_OF_GAME_CODE				3
 #define START_OF_MINIMUM_BET_AMOUNT		START_INDEX_OF_GAME_CODE + SIZE_OF_GAME_CODE
 #define SIZE_OF_MINIMUM_BET_AMOUNT		1
-#define	DEFAULT_BULLETIN_FOLDER_NAME	"bulletins\\"
+#define	DEFAULT_BULLETIN_PATH			"bulletins\\default_bulletin.txt"
+#define MIN_NUM_OF_BETS_FOR_A_GAME		3
 
 
 enum BetTypes

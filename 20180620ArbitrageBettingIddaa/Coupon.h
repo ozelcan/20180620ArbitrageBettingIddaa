@@ -8,6 +8,7 @@ class CouponGames: public Game
 public:
 	CouponGames();
 	~CouponGames();
+	CouponGames(Game game);
 	BetTypes betOnGame;
 
 private:
